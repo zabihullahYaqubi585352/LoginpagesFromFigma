@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-[810px] rounded-[20px] h-[70px] ">
+  <div class="w-full max-w-[850px] rounded-[20px] h-[70px] px-6  ">
     <div
 
        class="arrow-box custom-button"

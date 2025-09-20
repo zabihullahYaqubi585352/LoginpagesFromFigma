@@ -1,17 +1,15 @@
 <template>
-  <q-page class="flex items-start w-full bg-[#FFF9F1] overflow-hidden">
-    <div class="flex justify-center items-center w-full py-4 ">
+  <q-page class="flex items-start w-full bg-[#FFF9F1] ">
+    <div class="flex justify-center items-center w-full pt-8">
       <q-img
         src="../assets/Vector.png"
         class="w-[100px] h-[85px]"
         fit="contain"
       />
     </div>
-    <div class="grid grid-cols-12 px-4 w-full bg-amber- pb-32 ">
+    <div class="grid grid-cols-12 px-4 w-full pb-32">
       <div class="col-span-12 md:col-span-8 md:col-start-3">
-        <div
-          class="customeText py-8"
-        >
+        <div class="customeText py-8">
           A code has been sent to your email please enter the code
         </div>
         <p
@@ -21,37 +19,38 @@
         </p>
         <q-card
           flat
-          class="rounded-3xl flex items-center flex-col bg-transparent gap-8 justify-center">
-          <div class ="flex items-center justify-center gap-4 max-w-[975px]">
-             <div
-            v-for="(digit, index) in codes"
-            :key="index"
-            class="w-[90px] h-[84px] transition-transform duration-200 ease-in-out    "
-            :class="{
-              'scale-110 opacity-100': codes[index] !== '',
-              'opacity-70': codes[index] === '',
-              shake: shakeIndex === index,
-              glow: glowActive,
-            }"
-          >
-            <q-input
-              v-model="codes[index]"
-              borderless
-              maxlength="1"
-              hide-bottom-space
-              standout
-
-              input-class="text-center text-6xl"
-              class="customeInput p-2"
-              @input="handleInput(index)"
-              @keydown.backspace="handleBackspace(index, $event)"
-            />
-          </div>
+          class="rounded-3xl flex items-center flex-col bg-transparent gap-8 justify-center"
+        >
+          <div class="flex items-center justify-center gap-4 max-w-[975px]">
+            <div
+              v-for="(digit, index) in codes"
+              :key="index"
+              class="w-[90px] h-[84px] transition-transform duration-200 ease-in-out"
+              :class="{
+                'scale-110 opacity-100': codes[index] !== '',
+                'opacity-70': codes[index] === '',
+                shake: shakeIndex === index,
+                glow: glowActive,
+              }"
+            >
+              <q-input
+                v-model="codes[index]"
+                type="tel"
+                maxlength="1"
+                borderless=""
+                input-class="text-center text-6xl"
+                class="customeInput p-[10px]"
+                @input="handleInput(index)"
+                @keydown.backspace="handleBackspace(index, $event)"
+                @paste="(e) => handlePaste(e, index)"
+                @keypress="(e) => !/[0-9]/.test(e.key) && e.preventDefault()"
+              />
+            </div>
           </div>
           <q-card-section
-class="w-full h-full flex items-center justify-center "
-          >   <CustomeSubmit
-
+            class="w-full h-full flex items-center justify-center"
+          >
+            <CustomeSubmit
               @click="submitCode"
               label="Submit"
               :disabled="!isComplete"
@@ -74,23 +73,27 @@ const glowActive = ref(false);
 
 const isComplete = computed(() => codes.value.every((c) => c !== ""));
 
-const handleInput = (index) => {
-  const value = codes.value[index];
+const handlePaste = (event, index) => {
+  event.preventDefault();
+  const pasteData = event.clipboardData.getData("text").replace(/\D/g, ""); // only digits
 
-  // فقط عدد مجاز است
-  if (!/^\d$/.test(value)) {
-    codes.value[index] = "";
-    triggerShake(index);
-    return;
+  // Fill inputs starting from current index
+  for (let i = 0; i < pasteData.length; i++) {
+    if (index + i < codes.value.length) {
+      codes.value[index + i] = pasteData[i];
+    }
   }
 
-  // حرکت به بعدی
-  if (index < codes.value.length - 1) {
-    nextTick(() => {
-      const nextInput = document.querySelectorAll("input")[index + 1];
-      nextInput?.focus();
-    });
-  }
+  // Focus the last filled input or the next empty
+  nextTick(() => {
+    let nextInputIndex = index + pasteData.length;
+    if (nextInputIndex >= codes.value.length)
+      nextInputIndex = codes.value.length - 1;
+    const nextInput = document.querySelectorAll(".customeInput input")[
+      nextInputIndex
+    ];
+    nextInput?.focus();
+  });
 };
 
 const handleBackspace = (index) => {
@@ -177,6 +180,8 @@ watch(codes, (newVal) => {
   border-radius: 20px;
   border: 2px solid rgba(253, 137, 3, 0.4);
   background: #fff9f1;
+  font-size: bold;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,13 +190,14 @@ watch(codes, (newVal) => {
     5px 5px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.customeText{
+.customeText {
   color: #003329;
-text-align: center;
-font-family: "Arena Uno";
-font-size: 37.311px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  text-align: center;
+  font-family: "Arena Uno";
+  font-size: 37.311px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 </style>
+

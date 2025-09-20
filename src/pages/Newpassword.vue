@@ -1,26 +1,29 @@
 <template>
-  <q-page class="flex items-center w-full bg-[#FFF9F1] overflow-hidden">
-    <div class="grid grid-cols-12 px-4 w-full">
+  <q-page class="flex items-start w-full bg-[#FFF9F1] ">
+    <div class="flex justify-center items-center w-full py-8">
+        <q-img
+            src="../assets/Vector.png"
+            class="w-[100px] h-[85px]"
+            fit="contain"
+          />
+    </div>
+    <div class="grid grid-cols-12 px-4 w-full pb-32">
       <q-form class="col-span-12 md:col-span-8 md:col-start-3">
         <q-card
           flat
           class="rounded-2xl p-8 flex flex-col items-center bg-transparent"
         >
           <!-- Logo -->
-          <q-img
-            src="../assets/Vector.png"
-            class="w-[100px] h-[85px]"
-            fit="contain"
-          />
+
 
           <!-- Title -->
-          <q-card-section class="flex flex-col justify-between gap-4 ">
-            <p
+          <q-card-section class="flex flex-col justify-between ">
+            <div
               class="text-[#003329] text-center font-[Arena_Uno] text-[37.311px] font-normal"
 
             >
               Please enter your new password
-          </p>
+            </div>
 
           </q-card-section>
 
