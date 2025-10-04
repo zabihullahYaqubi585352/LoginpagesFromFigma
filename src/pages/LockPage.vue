@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex items-center w-full bg-[#FFF9F1]">
+  <div class="flex items-center w-full min-h-screen bg-[#FFF9F1]">
     <div class="grid grid-cols-12 px-4 w-full">
       <div class="col-span-12 md:col-span-8 md:col-start-3">
         <q-card
@@ -38,10 +38,12 @@
             </svg>
           </div>
 
-          <div class="w-full max-w-[476px] h-[41px]  flex justify-center items-center ">
+          <div
+            class="w-full max-w-[476px] h-[41px] flex justify-center items-center"
+          >
             <div
               @click="$emit('submit')"
-              class="flex items-center justify-center custom-button border border-[#FD8903] w-full h-full "
+              class="flex items-center justify-center custom-button border border-[#FD8903] w-full h-full"
             >
               <div
                 class="flex items-center justify-center text-center text-[#FD8903] text-lg mx-[-20px]"
@@ -69,7 +71,7 @@
         </q-card>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex items-start w-full bg-[#FFF9F1] ">
+  <div class="flex items-start w-full min-h-screen bg-[#FFF9F1]">
     <div class="flex justify-center items-center w-full pt-8">
       <q-img
         src="../assets/Vector.png"
@@ -60,7 +60,7 @@
         </q-card>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script setup>
@@ -200,4 +200,3 @@ watch(codes, (newVal) => {
   line-height: normal;
 }
 </style>
-
