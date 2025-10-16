@@ -1,0 +1,25 @@
+{
+  "WelcomeBack": "Welcome Back",
+  "PleaseEnterCredentials": "Please enter your credentials",
+  "EmailLabel": "Username or Email",
+  "Name": "To Metal",
+  "PasswordLabel": "Password",
+  "EnterUsernameOrEmail": "Enter your username or email here",
+  "EnterUserpassword":"Enter Your Password Here",
+  "EmailRequired": "Email is required",
+  "InvalidEmail": "Invalid email format",
+  "PasswordRequired": "Password is required",
+  "RememberMe": "Remember Me",
+  "ForgotPassword": "Forgot Password",
+  "GeneralError": "Your User Name or Password is incorrect. Please check.",
+  "SettingsMessage": "All the settings can be changed in your profile",
+  "Enter": "Enter",
+  "code_sent": "A code has been sent to your email, please enter the code",
+  "place_code": "Place the code here",
+    "pleaseEnterYourEmail": "Please enter your email",
+    "pleaseEnterYourPassword": "Please enter your password",
+    "emailRequired": "Email is required",
+    "wrongEmail": "Your email is not correct. Please check."
+ 
+  
+}

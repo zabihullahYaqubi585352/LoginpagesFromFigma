@@ -1,0 +1,28 @@
+{
+  "WelcomeBack": "خوش آمدید",
+  "PleaseEnterCredentials": "لطفاً مشخصات خود را وارد کنید",
+  "EmailLabel": "نام کاربری یا ایمیل",
+  "Name": "به متال  ",
+  "UsernameOrEmail": "نام کاربری یا ایمیل",
+  "EnterUsernameOrEmail": "نام کاربری یا ایمیل خود را اینجا وارد کنید",
+  "EnterUserpassword":"رمز عبور خود را اینجا وارد کنید",
+  "PasswordLabel": "رمز عبور",
+  "EmailRequired": "وارد کردن ایمیل الزامی است",
+  "InvalidEmail": "فرمت ایمیل معتبر نیست",
+  "PasswordRequired": "رمز عبور الزامی است",
+  "RememberMe": "مرا به خاطر بسپار",
+  "ForgotPassword": "رمز عبور را فراموش کرده‌اید؟",
+  "GeneralError": "نام کاربری یا رمز عبور اشتباه است. لطفاً بررسی کنید.",
+  "SettingsMessage": "تمام تنظیمات را می‌توانید در پروفایل تغییر دهید",
+  "Enter": "ورود",
+  "code_sent": "یک کد به ایمیل شما ارسال شده است، لطفاً آن را وارد کنید",
+  "place_code": "کد را اینجا وارد کنید",
+  "pleaseEnterYourEmail": "لطفاً ایمیل خود را وارد کنید",
+   "pleaseEnterYourPassword": "لطفاً رمز عبور خود را وارد کنید",
+    "usernameOrEmail": "نام کاربری یا ایمیل",
+    "enterYourUsernameOrEmail": "نام کاربری یا ایمیل خود را اینجا وارد کنید",
+    "emailRequired": "ایمیل الزامی است",
+    "invalidEmail": "آدرس ایمیل نامعتبر است",
+    "wrongEmail": "ایمیل شما درست نیست. لطفاً بررسی کنید."
+   
+}

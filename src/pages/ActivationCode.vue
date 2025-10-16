@@ -10,12 +10,12 @@
     <div class="grid grid-cols-12 px-4 w-full pb-32">
       <div class="col-span-12 md:col-span-8 md:col-start-3">
         <div class="customeText py-8">
-          A code has been sent to your email please enter the code
+          {{ $t("code_sent") }}
         </div>
         <p
           class="text-{#003329} text-center font-[Arena_Uno] text-[20px] font-normal leading-normal mb-4"
         >
-          Place the code here
+          {{ $t("place_code") }}
         </p>
         <q-card
           flat
@@ -50,9 +50,10 @@
           <q-card-section
             class="w-full h-full flex items-center justify-center"
           >
-            <CustomeSubmit
+            <GeneralCustomSubmit
+
               @click="submitCode"
-              label="Submit"
+              :text="$t('Enter')"
               :disabled="!isComplete"
               classes="rounded-3xl text-[25px] font-[Arena_Uno]"
             />
@@ -65,7 +66,7 @@
 
 <script setup>
 import { ref, computed, nextTick, watch } from "vue";
-import CustomeSubmit from "../components/CustomeSubmit.vue";
+import GeneralCustomSubmit from "../components/GeneralCustomSubmit.vue";
 
 const codes = ref(Array(8).fill(""));
 const shakeIndex = ref(null);
@@ -181,7 +182,7 @@ watch(codes, (newVal) => {
   border: 2px solid rgba(253, 137, 3, 0.4);
   background: #fff9f1;
   font-size: bold;
-  font-size: 28px;
+  font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: center;

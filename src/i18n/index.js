@@ -1,5 +1,10 @@
-import enUS from './en-US'
+import { createI18n } from 'vue-i18n';
+import en from './locales/en.json';
+import fa from './locales/fa.json';
 
-export default {
-  'en-US': enUS
-}
+export default createI18n({
+  legacy: false,
+  locale: 'fa',
+  fallbackLocale: 'fa',
+  messages: { en, fa },
+});

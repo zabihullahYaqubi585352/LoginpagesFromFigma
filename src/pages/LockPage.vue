@@ -48,7 +48,7 @@
               <div
                 class="flex items-center justify-center text-center text-[#FD8903] text-lg mx-[-20px]"
               >
-                Login
+                {{ $t("Enter") }}
               </div>
               <div class="flex items-center justify-center">
                 <svg

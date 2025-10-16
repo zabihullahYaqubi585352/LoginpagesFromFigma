@@ -149,8 +149,8 @@
             </div>
 
             <div
-              v-if="state.generalError"
-              class="text-[#ED1C24] font-[Arena_Uno] text-[25px] font-bold flex text-center px-[6px] "
+              v-if="state.f"
+              class="text-[#ED1C24] font-[Arena_Uno] text-[25px] font-bold flex text-center px-[6px] mt-2"
             >
               Your User Name or Password is incorrect. Please check.
             </div>

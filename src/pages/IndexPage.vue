@@ -1,18 +1,22 @@
 <template>
   <q-page class="flex flex-center">
-   <LoginPage />
+   <!-- <LoginPage /> -->
+   <Login/>
 
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import LoginPage from '../pages/LoginPage.vue';
+// import LoginPage from '../pages/LoginPage.vue';
+import Login from '../pages/login.vue'
+
 
 export default defineComponent({
   name: 'IndexPage',
   components: {
-    LoginPage,
+    // LoginPage,
+    Login
 
   }
 });

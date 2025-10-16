@@ -17,14 +17,14 @@
             <div
               class="text-[#003329] text-center font-[Arena_Uno] text-[37.311px] font-normal"
             >
-              please enter your Email
+              {{ $t("pleaseEnterYourEmail") }}
             </div>
 
             <!-- bind the input -->
-           <CustomInput
+           <GeneralCustomInput
               v-model="state.email"
-              label="Username or Email"
-              placeholder="Enter Your User Name or Email Here"
+             :label="$t('EmailLabel')"
+             :placeholder="$t('EnterUsernameOrEmail')"
               :rules="rules.email"
               type="email"
               lazy-rules
@@ -33,15 +33,19 @@
               class="py-2"
                :hasError="state.errors.email"
             >
-            </CustomInput>
+            </GeneralCustomInput>
             <!-- disable animations when username is empty -->
           </q-card-section>
 
-          <CustomeSubmit
-            text="Enter"
+          <GeneralCustomSubmit
+            :text="$t('Enter')"
             @click="handleLogin"
+           class="mt-[10px]"
+           :loading="loading"
             :disabled="!state.email.trim() "
           />
+
+
           <div
               v-if="state.generalError"
               class="text-[#ED1C24] font-[Arena_Uno] text-[20px] font-bold flex text-center px-[6px] "
@@ -55,8 +59,12 @@
 </template>
 <script setup>
 import { ref,watch,reactive } from "vue";
-import CustomInput from "../components/CustomeInput.vue";
-import CustomeSubmit from "../components/CustomeSubmit.vue";
+import GeneralCustomInput from "../components/GeneralCustomInput.vue";
+import GeneralCustomSubmit from "../components/GeneralCustomSubmit.vue";
+import { getCurrentInstance } from 'vue'
+const { proxy } = getCurrentInstance();
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 
 let state = reactive({
   email: "",
@@ -73,11 +81,11 @@ let state = reactive({
 
 const rules = {
   email: [
-    (value) => !!value || this.$t("EmailRequired"),
+    (value) => !!value || proxy.$t("EmailRequired"),
     (value) =>
       /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/.test(
         value
-      ) || this.$t("InvalidEmail"),
+      ) || proxy.$t("InvalidEmail"),
   ],
 
 };
@@ -86,7 +94,11 @@ const validateEmail = (val) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(val);
 };
-
+watch(() => state.email, (val) => {
+  if (val?.length) {
+    state.errors.email = !validateEmail(val);
+  }
+});
 
 const handleLogin = () => {
   console.log("------------------------------------------" ,"check email and password")
@@ -110,3 +122,28 @@ watch(() => state.email, (val) => {
   }
 });
 </script>
+<style scoped>
+
+::v-deep(.q-field__messages) {
+  text-align: left !important;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin-left: 15px;
+
+}
+::v-deep(.customeInput .q-field__append .q-icon),
+::v-deep(.customeInput .q-field__append .q-icon.q-field__append-icon),
+::v-deep(.customeInput .q-field__append-icon) {
+  position: absolute !important;
+  right: 20px !important;      /* adjust to push it outside the input */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #ED1C24  !important;
+  background: #fff9f1 !important;
+  border-radius: 50% !important;
+  padding: 4px !important;
+
+  z-index: 3 !important;
+}
+</style>
