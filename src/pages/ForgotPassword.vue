@@ -21,17 +21,17 @@
             </div>
 
             <!-- bind the input -->
-           <GeneralCustomInput
+            <GeneralCustomInput
               v-model="state.email"
-             :label="$t('EmailLabel')"
-             :placeholder="$t('EnterUsernameOrEmail')"
+              :label="$t('EmailLabel')"
+              :placeholder="$t('EnterUsernameOrEmail')"
               :rules="rules.email"
               type="email"
               lazy-rules
               icon_name="email"
               ref="email"
               class="py-2"
-               :hasError="state.errors.email"
+              :hasError="state.errors.email"
             >
             </GeneralCustomInput>
             <!-- disable animations when username is empty -->
@@ -40,35 +40,34 @@
           <GeneralCustomSubmit
             :text="$t('Enter')"
             @click="handleLogin"
-           class="mt-[10px]"
-           :loading="loading"
-            :disabled="!state.email.trim() "
+            class="mt-[10px]"
+            :loading="loading"
+            :disabled="!state.email.trim()"
           />
 
-
           <div
-              v-if="state.generalError"
-              class="text-[#ED1C24] font-[Arena_Uno] text-[20px] font-bold flex text-center px-[6px] "
-            >
-              Your email is not correct. Please check.
-            </div>
+            v-if="state.generalError"
+            class="text-[#ED1C24] font-[Arena_Uno] text-[20px] font-bold flex text-center px-[6px]"
+          >
+            Your email is not correct. Please check.
+          </div>
         </q-card>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { ref,watch,reactive } from "vue";
+import { ref, watch, reactive } from "vue";
 import GeneralCustomInput from "../components/GeneralCustomInput.vue";
 import GeneralCustomSubmit from "../components/GeneralCustomSubmit.vue";
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let state = reactive({
   email: "",
-   touched: {
+  touched: {
     email: false,
     password: false,
   },
@@ -76,7 +75,7 @@ let state = reactive({
     email: false,
     password: false,
   },
-   generalError: false,
+  generalError: false,
 });
 
 const rules = {
@@ -87,59 +86,64 @@ const rules = {
         value
       ) || proxy.$t("InvalidEmail"),
   ],
-
 };
 
 const validateEmail = (val) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(val);
 };
-watch(() => state.email, (val) => {
-  if (val?.length) {
-    state.errors.email = !validateEmail(val);
+watch(
+  () => state.email,
+  (val) => {
+    if (val?.length) {
+      state.errors.email = !validateEmail(val);
+    }
   }
-});
+);
 
 const handleLogin = () => {
-  console.log("------------------------------------------" ,"check email and password")
+  console.log(
+    "------------------------------------------",
+    "check email and password"
+  );
   state.touched.email = true;
   state.errors.email = !validateEmail(state.email);
-  if (!state.errors.email ) {
+  if (!state.errors.email) {
     alert("Login successful!");
   }
-   if (state.errors.email ) {
+  if (state.errors.email) {
     state.generalError = true; // 🔥 show general error
     return;
   }
-    state.generalError = false;
+  state.generalError = false;
 };
 
-
 // Auto-clear error when user fixes input
-watch(() => state.email, (val) => {
-  if (state.touched.email) {
-    state.errors.email = !validateEmail(val);
+watch(
+  () => state.email,
+  (val) => {
+    if (state.touched.email) {
+      state.errors.email = !validateEmail(val);
+    }
   }
-});
+);
 </script>
 <style scoped>
-
 ::v-deep(.q-field__messages) {
   text-align: left !important;
   width: 100%;
   display: flex;
   justify-content: left;
   margin-left: 15px;
-
 }
 ::v-deep(.customeInput .q-field__append .q-icon),
 ::v-deep(.customeInput .q-field__append .q-icon.q-field__append-icon),
 ::v-deep(.customeInput .q-field__append-icon) {
   position: absolute !important;
-  right: 20px !important;      /* adjust to push it outside the input */
+  right: 10px !important; /* adjust to push it outside the input */
   top: 50% !important;
   transform: translateY(-50%) !important;
-  color: #ED1C24  !important;
+  color: #ed1c24 !important;
   background: #fff9f1 !important;
   border-radius: 50% !important;
   padding: 4px !important;

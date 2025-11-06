@@ -2,7 +2,7 @@
   <div class="w-full max-w-[850px] rounded-[20px] h-[70px] px-6  ">
     <q-btn class="arrow-box custom-button" :class="{ disabled, ready: !disabled }"
       v-bind="$attrs">
-      <div class="arrow left pr-12 xl:text-4xl lg:text-3xl md:text-2xl sm:text-xl  ">{{ text }}</div>
+      <div class="arrow left pr-12 text-4xl  ">{{ text }}</div>
       <div class="  ml-15 flex items-center pl-4  ">
         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="30" viewBox="0 0 86 32" fill="none"
           class=" arrow right pl-6 ">
